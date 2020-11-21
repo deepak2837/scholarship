@@ -26,13 +26,15 @@ class scholarship(models.Model):
     title=models.CharField(max_length=30)
     short_description= models.CharField(max_length=100)
     long_description=models.TextField()
-    img=models.ImageField(upload_to='pics/scholarship_pics',default='pics/scholarship_pics/default.png',validators=[file_size])
+    img=models.ImageField(upload_to='pics/scholarship_pics',validators=[file_size])
+    # default='pics/scholarship_pics/default.png'
     both = models.IntegerField(blank=True,null=True,default=0)
     boy=models.IntegerField(blank=True,null=True,default=-1)
     girl = models.IntegerField(blank=True,null=True,default=-1)
     active = models.BooleanField(default=True)
     document = models.FileField(upload_to='documents/scholarship_broucher/',validators=[file_size2])
-    scholarship_form = models.FileField(upload_to='documents/scholarship_form/',default='documents/scholarship_form/default_scholarship_form.pdf',validators=[file_size2])
+    scholarship_form = models.FileField(upload_to='documents/scholarship_form/',validators=[file_size2])
+    # default='documents/scholarship_form/default_scholarship_form.pdf'
     fromdate=models.DateField(null=True)
     toomdate = models.DateField(null=True)
 

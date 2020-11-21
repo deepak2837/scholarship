@@ -28,11 +28,11 @@ from .models import scholarship
 
 
 def file_size(value): # add this to some file where you can import it from
-    limit =  1024
+    limit =  5048
     if value.size > limit:
         raise ValidationError('File too large. Size should not exceed 1 MB.')
 
- mapping of father_rank for sorting porpose
+# mapping of father_rank for sorting porpose
 def place(x):
     if x == 'Lance Naik':
         return 0
@@ -51,7 +51,7 @@ def place(x):
     else:
         return -1
 
-for sorting year wise
+#for sorting year wise
 def year_value(x):
     if x == 'FE':
         return 3
@@ -548,245 +548,245 @@ def show_scholarship_template(request,x,y='0'):
         return render(request,'homepage/admin_panel.html',{'admin':admin,'students':students,'current_scholarship':current_scholarship,'selected':selected_students,'total':total,'remains':remains,'authority':authority})
 
 
-#def show_selected_applicants(request,x):
-#    all_admins = staff.objects.all()
-#    all_admin_branches = []
-#    all_applications = application_table.objects.all()
-#    current_scholarship = scholarship.objects.get(id = int(x))
-#    branch_one = []
-#    branch_two = []
-#    branch_three = []
-#    branch_four = []
-#
-#    #print("branch of this admin is",all_admins[0].branch)
-#    #print("current scholarship is",current_scholarship.title)
-#    for apps in all_applications:
-#        Student = User.objects.get(id=apps.user_id)
-#        if Student.profile.branch == all_admins[0].branch and apps.status == 1 and apps.scholarship_id == int(x):
-#            branch_one.append((Student,apps))
-#
-#    for apps in all_applications:
-#        Student = User.objects.get(id=apps.user_id)
-#        if Student.profile.branch == all_admins[1].branch and apps.status == 1 and apps.scholarship_id == int(x):
-#            branch_two.append((Student,apps))
-#
-#    for apps in all_applications:
-#        Student = User.objects.get(id=apps.user_id)
-#        if Student.profile.branch == all_admins[2].branch and apps.status == 1 and apps.scholarship_id == int(x):
-#            branch_three.append((Student,apps))
-#
-#    for apps in all_applications:
-#        Student = User.objects.get(id=apps.user_id)
-#        if Student.profile.branch == all_admins[3].branch and apps.status == 1 and apps.scholarship_id == int(x):
-#            branch_four.append((Student,apps))
-#
-#
-#    for admin in all_admins:
-#        if admin.branch == 1:
-#            all_admin_branches.append("COMP")
-#        elif admin.branch == 2:
-#            all_admin_branches.append("IT")
-#        elif admin.branch == 3:
-#            all_admin_branches.append("ENTC")
-#        else:
-#            all_admin_branches.append("MECH")
-#
-#    context = {
-#         'current_scholarship':current_scholarship,
-#         'branch_one':branch_one,
-#        'branch_two':branch_two,
-#        'branch_three':branch_three,
-#        'branch_four':branch_four,
-#        'branch0':all_admin_branches[0],
-#        'branch1': all_admin_branches[1],
-#        'branch2': all_admin_branches[2],
-#        'branch3': all_admin_branches[3],
-#
-#    }
-#    return render(request,'homepage/selected_applicants.html',context)
-#
-#
-#def Sort_Tuple_marks_increasing(tup):
-#    # getting length of list of tuples
-#    lst = len(tup)
-#    for i in range(0, lst):
-#
-#        for j in range(0, lst - i - 1):
-#            if (tup[j][0].profile.marks < tup[j + 1][0].profile.marks):
-#                temp = tup[j]
-#                tup[j] = tup[j + 1]
-#                tup[j + 1] = temp
-#            elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
-#                if(tup[j][0].profile.attendence < tup[j + 1][0].profile.attendence):
-#                    temp = tup[j]
-#                    tup[j] = tup[j + 1]
-#                    tup[j + 1] = temp
-#                elif(tup[j][0].profile.attendence == tup[j + 1][0].profile.attendence):
-#                    if (place(tup[j][0].profile.father_rank) < place(tup[j + 1][0].profile.father_rank)):
-#                        temp = tup[j]
-#                        tup[j] = tup[j + 1]
-#                        tup[j + 1] = temp
-#    return tup
-#
-#def Sort_Tuple_marks_decreasing(tup):
-#    # getting length of list of tuples
-#    lst = len(tup)
-#    for i in range(0, lst):
-#
-#        for j in range(0, lst - i - 1):
-#            if (tup[j][0].profile.marks > tup[j + 1][0].profile.marks):
-#                temp = tup[j]
-#                tup[j] = tup[j + 1]
-#                tup[j + 1] = temp
-#            elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
-#                if (tup[j][0].profile.attendence > tup[j + 1][0].profile.attendence):
-#                    temp = tup[j]
-#                    tup[j] = tup[j + 1]
-#                    tup[j + 1] = temp
-#                elif (tup[j][0].profile.attendence == tup[j + 1][0].profile.attendence):
-#                    if (place(tup[j][0].profile.father_rank) > place(tup[j + 1][0].profile.father_rank)):
-#                        temp = tup[j]
-#                        tup[j] = tup[j + 1]
-#                        tup[j + 1] = temp
-#    return tup
-#
-#def Sort_Tuple_attendence_increasing(tup):
-#    # getting length of list of tuples
-#    lst = len(tup)
-#    for i in range(0, lst):
-#
-#        for j in range(0, lst - i - 1):
-#            if (tup[j][0].profile.attendence < tup[j + 1][0].profile.attendence):
-#                temp = tup[j]
-#                tup[j] = tup[j + 1]
-#                tup[j + 1] = temp
-#            elif (tup[j][0].profile.attendence == tup[j + 1][0].profile.attendence):
-#                if (tup[j][0].profile.marks < tup[j + 1][0].profile.marks):
-#                    temp = tup[j]
-#                    tup[j] = tup[j + 1]
-#                    tup[j + 1] = temp
-#                elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
-#                    if (place(tup[j][0].profile.father_rank) < place(tup[j + 1][0].profile.father_rank)):
-#                        temp = tup[j]
-#                        tup[j] = tup[j + 1]
-#                        tup[j + 1] = temp
-#    return tup
-#
-#def Sort_Tuple_attendence_decreasing(tup):
-#    # getting length of list of tuples
-#    lst = len(tup)
-#    for i in range(0, lst):
-#
-#        for j in range(0, lst - i - 1):
-#            if (tup[j][0].profile.attendence > tup[j + 1][0].profile.attendence):
-#                temp = tup[j]
-#                tup[j] = tup[j + 1]
-#                tup[j + 1] = temp
-#            elif (tup[j][0].profile.attendence == tup[j + 1][0].profile.attendence):
-#                if (tup[j][0].profile.marks > tup[j + 1][0].profile.marks):
-#                    temp = tup[j]
-#                    tup[j] = tup[j + 1]
-#                    tup[j + 1] = temp
-#                elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
-#                    if (place(tup[j][0].profile.father_rank) > place(tup[j + 1][0].profile.father_rank)):
-#                        temp = tup[j]
-#                        tup[j] = tup[j + 1]
-#                        tup[j + 1] = temp
-#    return tup
-#
-#
-#def Sort_Tuple_rank(tup,y=1):
-#
-#
-#    lst = len(tup)
-#    if y==1:
-#        for i in range(0, lst):
-#            #print(tup[i][0].profile.id)
-#            for j in range(0, lst - i - 1):
-#
-#                if (place(tup[j][0].profile.father_rank) < place(tup[j + 1][0].profile.father_rank)):
-#                    temp = tup[j]
-#                    tup[j] = tup[j + 1]
-#                    tup[j + 1] = temp
-#                elif (tup[j][0].profile.father_rank == tup[j + 1][0].profile.father_rank):
-#                    if (tup[j][0].profile.marks < tup[j + 1][0].profile.marks):
-#                        temp = tup[j]
-#                        tup[j] = tup[j + 1]
-#                        tup[j + 1] = temp
-#                    elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
-#                        if (tup[j][0].profile.attendence < tup[j + 1][0].profile.attendence):
-#                            temp = tup[j]
-#                            tup[j] = tup[j + 1]
-#                            tup[j + 1] = temp
-#    else:
-#        for i in range(0, lst):
-#            #print(tup[i][0].profile.id)
-#            for j in range(0, lst - i - 1):
-#
-#                if (place(tup[j][0].profile.father_rank) > place(tup[j + 1][0].profile.father_rank)):
-#                    temp = tup[j]
-#                    tup[j] = tup[j + 1]
-#                    tup[j + 1] = temp
-#                elif (tup[j][0].profile.father_rank == tup[j + 1][0].profile.father_rank):
-#                    if (tup[j][0].profile.marks > tup[j + 1][0].profile.marks):
-#                        temp = tup[j]
-#                        tup[j] = tup[j + 1]
-#                        tup[j + 1] = temp
-#                    elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
-#                        if (tup[j][0].profile.attendence > tup[j + 1][0].profile.attendence):
-#                            temp = tup[j]
-#                            tup[j] = tup[j + 1]
-#                            tup[j + 1] = temp
-#
-#    return tup
-#
-#def Sort_year(tup,y=1):
-#
-#
-#    lst = len(tup)
-#    if y==1:
-#        for i in range(0, lst):
-#            #print(tup[i][0].profile.id)
-#            for j in range(0, lst - i - 1):
-#
-#                if (year_value(tup[j][0].profile.present_year) < year_value(tup[j + 1][0].profile.present_year)):
-#                    temp = tup[j]
-#                    tup[j] = tup[j + 1]
-#                    tup[j + 1] = temp
-#                elif (tup[j][0].profile.present_year == tup[j + 1][0].profile.present_year):
-#                    if (tup[j][0].profile.marks < tup[j + 1][0].profile.marks):
-#                        temp = tup[j]
-#                        tup[j] = tup[j + 1]
-#                        tup[j + 1] = temp
-#                    elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
-#                        if (tup[j][0].profile.attendence < tup[j + 1][0].profile.attendence):
-#                            temp = tup[j]
-#                            tup[j] = tup[j + 1]
-#                            tup[j + 1] = temp
-#    else:
-#        for i in range(0, lst):
-#            #print(tup[i][0].profile.id)
-#            for j in range(0, lst - i - 1):
-#
-#                if (year_value(tup[j][0].profile.present_year) > year_value(tup[j + 1][0].profile.present_year)):
-#                    temp = tup[j]
-#                    tup[j] = tup[j + 1]
-#                    tup[j + 1] = temp
-#                elif (tup[j][0].profile.present_year == tup[j + 1][0].profile.present_year):
-#                    if (tup[j][0].profile.marks > tup[j + 1][0].profile.marks):
-#                        temp = tup[j]
-#                        tup[j] = tup[j + 1]
-#                        tup[j + 1] = temp
-#                    elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
-#                        if (tup[j][0].profile.attendence >tup[j + 1][0].profile.attendence):
-#                            temp = tup[j]
-#                            tup[j] = tup[j + 1]
-#                            tup[j + 1] = temp
-#
-#    return tup
-#
-#
-#
+def show_selected_applicants(request,x):
+    all_admins = staff.objects.all()
+    all_admin_branches = []
+    all_applications = application_table.objects.all()
+    current_scholarship = scholarship.objects.get(id = int(x))
+    branch_one = []
+    branch_two = []
+    branch_three = []
+    branch_four = []
+
+    #print("branch of this admin is",all_admins[0].branch)
+    #print("current scholarship is",current_scholarship.title)
+    for apps in all_applications:
+        Student = User.objects.get(id=apps.user_id)
+        if Student.profile.branch == all_admins[0].branch and apps.status == 1 and apps.scholarship_id == int(x):
+            branch_one.append((Student,apps))
+
+    for apps in all_applications:
+        Student = User.objects.get(id=apps.user_id)
+        if Student.profile.branch == all_admins[1].branch and apps.status == 1 and apps.scholarship_id == int(x):
+            branch_two.append((Student,apps))
+
+    for apps in all_applications:
+        Student = User.objects.get(id=apps.user_id)
+        if Student.profile.branch == all_admins[2].branch and apps.status == 1 and apps.scholarship_id == int(x):
+            branch_three.append((Student,apps))
+
+    for apps in all_applications:
+        Student = User.objects.get(id=apps.user_id)
+        if Student.profile.branch == all_admins[3].branch and apps.status == 1 and apps.scholarship_id == int(x):
+            branch_four.append((Student,apps))
+
+
+    for admin in all_admins:
+        if admin.branch == 1:
+            all_admin_branches.append("COMP")
+        elif admin.branch == 2:
+            all_admin_branches.append("IT")
+        elif admin.branch == 3:
+            all_admin_branches.append("ENTC")
+        else:
+            all_admin_branches.append("MECH")
+
+    context = {
+         'current_scholarship':current_scholarship,
+         'branch_one':branch_one,
+        'branch_two':branch_two,
+        'branch_three':branch_three,
+        'branch_four':branch_four,
+        'branch0':all_admin_branches[0],
+        'branch1': all_admin_branches[1],
+        'branch2': all_admin_branches[2],
+        'branch3': all_admin_branches[3],
+
+    }
+    return render(request,'homepage/selected_applicants.html',context)
+
+
+def Sort_Tuple_marks_increasing(tup):
+    # getting length of list of tuples
+    lst = len(tup)
+    for i in range(0, lst):
+
+        for j in range(0, lst - i - 1):
+            if (tup[j][0].profile.marks < tup[j + 1][0].profile.marks):
+                temp = tup[j]
+                tup[j] = tup[j + 1]
+                tup[j + 1] = temp
+            elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
+                if(tup[j][0].profile.attendence < tup[j + 1][0].profile.attendence):
+                    temp = tup[j]
+                    tup[j] = tup[j + 1]
+                    tup[j + 1] = temp
+                elif(tup[j][0].profile.attendence == tup[j + 1][0].profile.attendence):
+                    if (place(tup[j][0].profile.father_rank) < place(tup[j + 1][0].profile.father_rank)):
+                        temp = tup[j]
+                        tup[j] = tup[j + 1]
+                        tup[j + 1] = temp
+    return tup
+
+def Sort_Tuple_marks_decreasing(tup):
+    # getting length of list of tuples
+    lst = len(tup)
+    for i in range(0, lst):
+
+        for j in range(0, lst - i - 1):
+            if (tup[j][0].profile.marks > tup[j + 1][0].profile.marks):
+                temp = tup[j]
+                tup[j] = tup[j + 1]
+                tup[j + 1] = temp
+            elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
+                if (tup[j][0].profile.attendence > tup[j + 1][0].profile.attendence):
+                    temp = tup[j]
+                    tup[j] = tup[j + 1]
+                    tup[j + 1] = temp
+                elif (tup[j][0].profile.attendence == tup[j + 1][0].profile.attendence):
+                    if (place(tup[j][0].profile.father_rank) > place(tup[j + 1][0].profile.father_rank)):
+                        temp = tup[j]
+                        tup[j] = tup[j + 1]
+                        tup[j + 1] = temp
+    return tup
+
+def Sort_Tuple_attendence_increasing(tup):
+    # getting length of list of tuples
+    lst = len(tup)
+    for i in range(0, lst):
+
+        for j in range(0, lst - i - 1):
+            if (tup[j][0].profile.attendence < tup[j + 1][0].profile.attendence):
+                temp = tup[j]
+                tup[j] = tup[j + 1]
+                tup[j + 1] = temp
+            elif (tup[j][0].profile.attendence == tup[j + 1][0].profile.attendence):
+                if (tup[j][0].profile.marks < tup[j + 1][0].profile.marks):
+                    temp = tup[j]
+                    tup[j] = tup[j + 1]
+                    tup[j + 1] = temp
+                elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
+                    if (place(tup[j][0].profile.father_rank) < place(tup[j + 1][0].profile.father_rank)):
+                        temp = tup[j]
+                        tup[j] = tup[j + 1]
+                        tup[j + 1] = temp
+    return tup
+
+def Sort_Tuple_attendence_decreasing(tup):
+    # getting length of list of tuples
+    lst = len(tup)
+    for i in range(0, lst):
+
+        for j in range(0, lst - i - 1):
+            if (tup[j][0].profile.attendence > tup[j + 1][0].profile.attendence):
+                temp = tup[j]
+                tup[j] = tup[j + 1]
+                tup[j + 1] = temp
+            elif (tup[j][0].profile.attendence == tup[j + 1][0].profile.attendence):
+                if (tup[j][0].profile.marks > tup[j + 1][0].profile.marks):
+                    temp = tup[j]
+                    tup[j] = tup[j + 1]
+                    tup[j + 1] = temp
+                elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
+                    if (place(tup[j][0].profile.father_rank) > place(tup[j + 1][0].profile.father_rank)):
+                        temp = tup[j]
+                        tup[j] = tup[j + 1]
+                        tup[j + 1] = temp
+    return tup
+
+
+def Sort_Tuple_rank(tup,y=1):
+
+
+    lst = len(tup)
+    if y==1:
+        for i in range(0, lst):
+            #print(tup[i][0].profile.id)
+            for j in range(0, lst - i - 1):
+
+                if (place(tup[j][0].profile.father_rank) < place(tup[j + 1][0].profile.father_rank)):
+                    temp = tup[j]
+                    tup[j] = tup[j + 1]
+                    tup[j + 1] = temp
+                elif (tup[j][0].profile.father_rank == tup[j + 1][0].profile.father_rank):
+                    if (tup[j][0].profile.marks < tup[j + 1][0].profile.marks):
+                        temp = tup[j]
+                        tup[j] = tup[j + 1]
+                        tup[j + 1] = temp
+                    elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
+                        if (tup[j][0].profile.attendence < tup[j + 1][0].profile.attendence):
+                            temp = tup[j]
+                            tup[j] = tup[j + 1]
+                            tup[j + 1] = temp
+    else:
+        for i in range(0, lst):
+            #print(tup[i][0].profile.id)
+            for j in range(0, lst - i - 1):
+
+                if (place(tup[j][0].profile.father_rank) > place(tup[j + 1][0].profile.father_rank)):
+                    temp = tup[j]
+                    tup[j] = tup[j + 1]
+                    tup[j + 1] = temp
+                elif (tup[j][0].profile.father_rank == tup[j + 1][0].profile.father_rank):
+                    if (tup[j][0].profile.marks > tup[j + 1][0].profile.marks):
+                        temp = tup[j]
+                        tup[j] = tup[j + 1]
+                        tup[j + 1] = temp
+                    elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
+                        if (tup[j][0].profile.attendence > tup[j + 1][0].profile.attendence):
+                            temp = tup[j]
+                            tup[j] = tup[j + 1]
+                            tup[j + 1] = temp
+
+    return tup
+
+def Sort_year(tup,y=1):
+
+
+    lst = len(tup)
+    if y==1:
+        for i in range(0, lst):
+            #print(tup[i][0].profile.id)
+            for j in range(0, lst - i - 1):
+
+                if (year_value(tup[j][0].profile.present_year) < year_value(tup[j + 1][0].profile.present_year)):
+                    temp = tup[j]
+                    tup[j] = tup[j + 1]
+                    tup[j + 1] = temp
+                elif (tup[j][0].profile.present_year == tup[j + 1][0].profile.present_year):
+                    if (tup[j][0].profile.marks < tup[j + 1][0].profile.marks):
+                        temp = tup[j]
+                        tup[j] = tup[j + 1]
+                        tup[j + 1] = temp
+                    elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
+                        if (tup[j][0].profile.attendence < tup[j + 1][0].profile.attendence):
+                            temp = tup[j]
+                            tup[j] = tup[j + 1]
+                            tup[j + 1] = temp
+    else:
+        for i in range(0, lst):
+            #print(tup[i][0].profile.id)
+            for j in range(0, lst - i - 1):
+
+                if (year_value(tup[j][0].profile.present_year) > year_value(tup[j + 1][0].profile.present_year)):
+                    temp = tup[j]
+                    tup[j] = tup[j + 1]
+                    tup[j + 1] = temp
+                elif (tup[j][0].profile.present_year == tup[j + 1][0].profile.present_year):
+                    if (tup[j][0].profile.marks > tup[j + 1][0].profile.marks):
+                        temp = tup[j]
+                        tup[j] = tup[j + 1]
+                        tup[j + 1] = temp
+                    elif (tup[j][0].profile.marks == tup[j + 1][0].profile.marks):
+                        if (tup[j][0].profile.attendence >tup[j + 1][0].profile.attendence):
+                            temp = tup[j]
+                            tup[j] = tup[j + 1]
+                            tup[j + 1] = temp
+
+    return tup
+
+
+
 def applied_application(request,x,y,z):
     application=application_table.objects.get(id=y)
     student=User.objects.get(id=x)
@@ -820,133 +820,133 @@ def pdf_view2(request,x):
     image_data = open(path, 'rb').read()
     return HttpResponse(image_data, content_type='application/pdf')
 
-#
-#def pdf_view3(request,x):
-#    s = application_table.objects.get(pk=x)
-#    pdf_name=s.applied_scholarship_form
-#    path='media/'+str(pdf_name)
-#    image_data = open(path, 'rb').read()
-#    return HttpResponse(image_data, content_type='application/pdf')
-#
-#def unique_name(strr):
-#    s=strr.split('.')
-#    x=random.randint(1,10000)
-#    ss=str(x)+'_'+s[0]+'.'+s[1]
-#    return ss
-#
-#from django.core.files.storage import FileSystemStorage
-#def submit_application(request,x,y):
-#    if request.method=='POST':
-#        all_apps=application_table.objects.all()
-#
-#
-#        if request.user.profile.document10 and request.user.profile.document12 and request.user.profile.document_last_sem and request.user.profile.student_id and request.user.profile.father_id:
-#            for app in all_apps:
-#                if app.scholarship_id==int(x) and app.user_id==int(y):
-#                    app.delete()
-#
-#            p_form = extra_documents_form(request.POST, request.FILES)
-#            if p_form.is_valid():
-#                tup=p_form.save(commit=False)
-#                tup.user_id=y
-#                tup.scholarship_id=x
-#                tup.applied_document10 = request.user.profile.document10
-#                tup.applied_document12 = request.user.profile.document12
-#                tup.applied_document_last_sem = request.user.profile.document_last_sem
-#                tup.applied_father_id = request.user.profile.father_id
-#                tup.applied_student_id = request.user.profile.student_id
-#                tup.save()
-#
-#                messages.success(request, 'scholarship applied succesfully, Check the status in profile')
-#            else:
-#                messages.error(request, 'Error.Check the file size ,it should not exceed 1 MB')
-#
-#            return redirect(request.META['HTTP_REFERER'])
-#        else:
-#            messages.error(request, 'Upload all documents')
-#            return redirect(request.META['HTTP_REFERER'])
-#
-#
+
+def pdf_view3(request,x):
+    s = application_table.objects.get(pk=x)
+    pdf_name=s.applied_scholarship_form
+    path='media/'+str(pdf_name)
+    image_data = open(path, 'rb').read()
+    return HttpResponse(image_data, content_type='application/pdf')
+
+def unique_name(strr):
+    s=strr.split('.')
+    x=random.randint(1,10000)
+    ss=str(x)+'_'+s[0]+'.'+s[1]
+    return ss
+
+from django.core.files.storage import FileSystemStorage
+def submit_application(request,x,y):
+    if request.method=='POST':
+        all_apps=application_table.objects.all()
+
+
+        if request.user.profile.document10 and request.user.profile.document12 and request.user.profile.document_last_sem and request.user.profile.student_id and request.user.profile.father_id:
+            for app in all_apps:
+                if app.scholarship_id==int(x) and app.user_id==int(y):
+                    app.delete()
+
+            p_form = extra_documents_form(request.POST, request.FILES)
+            if p_form.is_valid():
+                tup=p_form.save(commit=False)
+                tup.user_id=y
+                tup.scholarship_id=x
+                tup.applied_document10 = request.user.profile.document10
+                tup.applied_document12 = request.user.profile.document12
+                tup.applied_document_last_sem = request.user.profile.document_last_sem
+                tup.applied_father_id = request.user.profile.father_id
+                tup.applied_student_id = request.user.profile.student_id
+                tup.save()
+
+                messages.success(request, 'scholarship applied succesfully, Check the status in profile')
+            else:
+                messages.error(request, 'Error.Check the file size ,it should not exceed 1 MB')
+
+            return redirect(request.META['HTTP_REFERER'])
+        else:
+            messages.error(request, 'Upload all documents')
+            return redirect(request.META['HTTP_REFERER'])
+
+
 # for registed students
-#def registered_students(request):
-#
-#    adm = User.objects.get(id = request.user.id)
-#    admstaffobj = staff.objects.get(emp_no = adm.username)
-#    adminbranch = admstaffobj.branch
-#
-#    #print("admin branch is",adminbranch)
-#
-#    branch_students = []
-#
-#    Userobjects = User.objects.all()
-#    #print(Userobjects)
-#
-#    for u in Userobjects:
-#        if u.profile.branch == adminbranch and u.is_staff == False:
-#            branch_students.append((u,u.id))
-#
-#
-#    #for x,y in branch_students:
-#        #print(x,end=" ")
-#        #print(y)
-#
-#    context={
-#        "branch_students":branch_students,
-#        "emp_no":admstaffobj.emp_no
-#    }
-#
-#    return render(request,'homepage/registered_students.html',context)
-#
-#def delete_particular_student(request,x):
-#
-#    stud = User.objects.get(id = x)
-#    applications = application_table.objects.all()
-#    try:
-#        for appli in applications:
-#            if appli.user_id == stud.id:
-#                appli.delete()
-#    except:
-#        pass
-#
-#    #print("student name is",stud.username)
-#    #print("student id is",stud.id)
-#    # stud.delete()
-#    stud.delete()
-#
-#    return redirect(request.META['HTTP_REFERER'])
-#
-#
-#def delete_all_student(request,x):
-#
-#    admobject = staff.objects.get(emp_no = x)
-#    admbranch = admobject.branch
-#
-#    branch_students = []
-#    student_applications = []
-#    Userobjects = User.objects.all()
-#    applicationobjects = application_table.objects.all()
-#
-#    for u in Userobjects:
-#        if u.profile.branch == admbranch and u.is_staff == False:
-#            branch_students.append(u)
-#            # print("student is ",u.id)
-#            for app in applicationobjects:
-#                if app.user_id == u.id:
-#                    # print("app id is",app.user_id," ",app.scholarship_id)
-#                    student_applications.append(app)
-#
-#    for app in student_applications:
-#        try:
-#            # print(app)
-#            app.delete()
-#        except:
-#            pass
-#
-#    for bu in branch_students:
-#        bu.delete()
-#
-#
-#    return redirect(request.META['HTTP_REFERER'])
+def registered_students(request):
+
+    adm = User.objects.get(id = request.user.id)
+    admstaffobj = staff.objects.get(emp_no = adm.username)
+    adminbranch = admstaffobj.branch
+
+    #print("admin branch is",adminbranch)
+
+    branch_students = []
+
+    Userobjects = User.objects.all()
+    #print(Userobjects)
+
+    for u in Userobjects:
+        if u.profile.branch == adminbranch and u.is_staff == False:
+            branch_students.append((u,u.id))
+
+
+    #for x,y in branch_students:
+        #print(x,end=" ")
+        #print(y)
+
+    context={
+        "branch_students":branch_students,
+        "emp_no":admstaffobj.emp_no
+    }
+
+    return render(request,'homepage/registered_students.html',context)
+
+def delete_particular_student(request,x):
+
+    stud = User.objects.get(id = x)
+    applications = application_table.objects.all()
+    try:
+        for appli in applications:
+            if appli.user_id == stud.id:
+                appli.delete()
+    except:
+        pass
+
+    #print("student name is",stud.username)
+    #print("student id is",stud.id)
+    # stud.delete()
+    stud.delete()
+
+    return redirect(request.META['HTTP_REFERER'])
+
+
+def delete_all_student(request,x):
+
+    admobject = staff.objects.get(emp_no = x)
+    admbranch = admobject.branch
+
+    branch_students = []
+    student_applications = []
+    Userobjects = User.objects.all()
+    applicationobjects = application_table.objects.all()
+
+    for u in Userobjects:
+        if u.profile.branch == admbranch and u.is_staff == False:
+            branch_students.append(u)
+            # print("student is ",u.id)
+            for app in applicationobjects:
+                if app.user_id == u.id:
+                    # print("app id is",app.user_id," ",app.scholarship_id)
+                    student_applications.append(app)
+
+    for app in student_applications:
+        try:
+            # print(app)
+            app.delete()
+        except:
+            pass
+
+    for bu in branch_students:
+        bu.delete()
+
+
+    return redirect(request.META['HTTP_REFERER'])
 
 
 def our_team(request):
