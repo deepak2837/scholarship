@@ -3,24 +3,24 @@ from datetime import datetime,date
 
 from django.core.exceptions import ValidationError
 
-#
-#def file_size(value): # add this to some file where you can import it from
-#    limit =  1024*1024
-#    if value.size > limit:
-#        raise ValidationError('File too large. Size should not exceed 1 MB.')
-#
-#    if not value.path.lower().endswith(('.png', '.jpg', '.jpeg')):
-#        raise ValidationError('File format is not correct , only png, jpg, or jpeg allowed')
-#
-#def file_size2(value): # add this to some file where you can import it from
-#    limit =  1024*1024
-#    if value.size > limit:
-#        raise ValidationError('File too large. Size should not exceed 1 MB.')
-#
-#    if not value.path.lower().endswith('.pdf'):
-#        raise ValidationError('File format is not correct, Only pdf allowed ')
-#
-#
+
+def file_size(value): # add this to some file where you can import it from
+    limit =  1024*1024
+    if value.size > limit:
+        raise ValidationError('File too large. Size should not exceed 1 MB.')
+
+    if not value.path.lower().endswith(('.png', '.jpg', '.jpeg')):
+        raise ValidationError('File format is not correct , only png, jpg, or jpeg allowed')
+
+def file_size2(value): # add this to some file where you can import it from
+    limit =  1024*1024
+    if value.size > limit:
+        raise ValidationError('File too large. Size should not exceed 1 MB.')
+
+    if not value.path.lower().endswith('.pdf'):
+        raise ValidationError('File format is not correct, Only pdf allowed ')
+
+
 
 class scholarship(models.Model):
     title=models.CharField(max_length=30)
