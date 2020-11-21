@@ -12,20 +12,20 @@ def file_size(value): # add this to some file where you can import it from
     if value.size > limit:
         raise ValidationError('File too large. Size should not exceed 1 MB.')
 
-    if not value.path.lower().endswith(('.png', '.jpg', '.jpeg')):
+    if not value.path.lower().endswith(('.png', '.jpg', '.jpeg','.pdf')):
         raise ValidationError('File format is not correct , only png, jpg, or jpeg allowed')
 
 
 
 
 RANK_COHICES = (
-    ('Lance Naik','Lance Naik'),
-    ('Naik','Naik'),
-    ('Hawaldar','Hawaldar'),
-    ('Nb Subedar','Nb Subedar'),
-    ('Subedar','Subedar'),
-    ('Subeder Maj','Subeder Maj'),
-    ('Officer','Officer'),
+    ('farmer','farmer'),
+    ('labour','labour'),
+    ('service','sevice'),
+    ('dead','dead'),
+    ('business','business'),
+    ('company','company'),
+    ('unemployed','unemployed'),
 )
 present_year = (
     ('FE','FE'),
@@ -66,7 +66,7 @@ class profile(models.Model):
     mobile = models.CharField(max_length=50,blank=True,null=True)
     name = models.CharField(max_length=20,default='')
     marks=models.IntegerField(default=0,blank=True,null=True)
-    father_rank=models.CharField(max_length=50,choices=RANK_COHICES,default='Officer')
+    father_rank=models.CharField(max_length=50,choices=RANK_COHICES,default='farmer')
     father_name=models.CharField(max_length=30,default='',blank=True,null=True)
     present_year=models.CharField(max_length=30,choices=present_year,default='FE')
 
