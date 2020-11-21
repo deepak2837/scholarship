@@ -3,6 +3,17 @@ from datetime import datetime,date
 
 from django.core.exceptions import ValidationError
 
+STATUS_CHOICES = (
+    ('PENDING','PENDING'),
+    ('UNDER OBSERVATION','UNDER OBSERVTION'),
+    
+    ('SELECTED','SELECTED'),
+    
+    ('APPROVED','APPROVED'),
+    ('REJECTED','REJECTED'),
+    
+)
+
 
 def file_size(value): # add this to some file where you can import it from
     limit =  1024*1024
@@ -42,7 +53,8 @@ class scholarship(models.Model):
 class application_table(models.Model):
     scholarship_id=models.IntegerField(default=0)
     user_id=models.IntegerField(default=0)
-    status = models.IntegerField(default=2,blank=True,null=True)
+    status=models.CharField(max_length=50,choices=STATUS_CHOICES,default='PENDING')
+    # status = models.CharField(default="under observation",max_length= 50,blank=True,null=True)
     applied_student_id = models.FileField(upload_to='applications/student_id',blank=True,null=True)
     applied_father_id = models.FileField(upload_to='applications/father_id',blank=True,null=True)
     applied_document_last_sem = models.FileField(upload_to='applications/document_last_sem',blank=True,null=True)
