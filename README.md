@@ -4,7 +4,7 @@
 
 
 
-Scholarship Application
+Scholarship Application : 
 This is a simple scholarship application website developed on the django framework.
 this is the scholarship portal for the needy students and the those who are crushed by knowledge
 For testing the app, clone the repository into your local machine and a media directory for uploading media files on the directory that contains the django project.
