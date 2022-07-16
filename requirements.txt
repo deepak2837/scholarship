@@ -1,4 +1,4 @@
-Django
+django==3.2.10
 django-bootstrap4
 django-crispy-forms
 django-import-export
