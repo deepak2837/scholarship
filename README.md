@@ -9,7 +9,7 @@
 ### this scholarship portal is for the needy students and the those who are crushed by knowledge
 
 
-
+### some functionalityare listed below :
 
 
 
