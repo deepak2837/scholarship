@@ -14,7 +14,12 @@ import django_heroku
 
 import os
 from django.contrib.messages import constants as messages
-
+if 'DYNO' in os.environ:
+    # Running on Heroku, use the provided PORT environment variable.
+    PORT = int(os.environ.get('PORT'))
+else:
+    # Running locally or on a different platform, use a default port.
+    PORT = 8000
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
