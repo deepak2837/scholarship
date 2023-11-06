@@ -4,7 +4,7 @@
 
 
 
-## Scholarship Application : [see it live] : https://scholarship-project.herokuapp.com/
+## Scholarship Application : [see it live] : <h1>(https://cvn.onrender.com)</h1>
 
 ------------
 
@@ -39,6 +39,8 @@
 
 #####  Demo user for testing this webapp :
 **Roll no.: 12345**
+
+clone it and install packages and then create superuser 
 **Password : demo**
 
 
